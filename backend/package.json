@@ -1,0 +1,54 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/entry/app.js",
+  "author": "mexican-particles",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "start:builded:api": "node ./build/entry/api.js",
+    "build": "rm -rf ./build & npm run webpack",
+    "webpack": "webpack",
+    "build:no-emit": "tsc -p tsconfig.json --noEmit",
+    "ts-node": "ts-node --files -r tsconfig-paths/register",
+    "lint": "eslint './src/**/*.ts'",
+    "lint:fix": "eslint --fix './src/**/*.ts'",
+    "lint:type": "tsc -p tsconfig.json --noEmit",
+    "precommit:build": "tsc -p tsconfig.json --noEmit",
+    "precommit:lint-staged": "lint-staged"
+  },
+  "dependencies": {
+    "@types/uuid": "^3.4.7",
+    "aws-sdk": "^2.614.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "serverless-http": "^2.3.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/node": "^13.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "lint-staged": "^10.0.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "lint-staged": {
+    "**/*.ts": "eslint --fix"
+  }
+}

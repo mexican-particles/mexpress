@@ -1,0 +1,38 @@
+service: mexpress
+
+plugins:
+  - serverless-plugin-scripts
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-northeast-1
+
+resources:
+  - ${file(backend/resources/dynamodb.yml)}
+  - ${file(backend/resources/iamrole.yml)}
+
+functions:
+  api:
+    handler: backend/build/entry/api.main
+    name: ${self:custom.prefix}-api
+    role: apiRole
+    environment:
+      SERVICE: ${self:service}
+      STAGE: ${self:provider.stage}
+      REGION:
+        Ref: AWS::Region
+    events:
+      - http:
+          method: ANY
+          path: '/'
+      - http:
+          method: ANY
+          path: '{proxy+}'
+
+custom:
+  prefix: ${self:service}-${self:provider.stage}
+  scripts:
+    hooks:
+      'package:initialize': ./scripts/pre-deployment.sh

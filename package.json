@@ -1,0 +1,21 @@
+{
+  "name": "mexpress",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "switch": "node scripts/switch.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "husky": "^4.2.1",
+    "serverless-plugin-scripts": "^1.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "./scripts/pre-push.sh"
+    }
+  }
+}

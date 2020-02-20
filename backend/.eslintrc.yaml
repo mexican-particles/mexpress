@@ -1,0 +1,21 @@
+extends:
+  # airbnbの公式Lintルールを基本とする
+  - 'airbnb-base'
+  # eslintをTypeScriptでいい感じに動かす
+  # https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+  - 'plugin:@typescript-eslint/recommended'
+  # eslintとprettierを連携する
+  # https://github.com/prettier/eslint-plugin-prettier#recommended-configuration
+  - 'plugin:prettier/recommended'
+rules:
+  # https://github.com/prettier/eslint-plugin-prettier#options
+  prettier/prettier:
+    - 'error'
+    - singleQuote: true
+      trailingComma: 'es5'
+settings:
+  import/resolver:
+    node:
+      paths: ['src']
+      # ts,tsxファイルも対象とする
+      extensions: ['.js', '.ts']
